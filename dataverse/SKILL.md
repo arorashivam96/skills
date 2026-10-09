@@ -93,7 +93,7 @@ Never claim MCP is connected just because CLI auth succeeded.
 
 ## Telemetry attribution (JetBrains)
 
-Set `DATAVERSE_PLUGIN_HOST=jetbrains` in `.env`; `scripts/auth.py` stamps `host=jetbrains` into the operation-context so Dataverse telemetry attributes the traffic to JetBrains. Use the **verified** plugin version in any attribution context (read it from the plugin manifest) -- never guess it.
+When `dv-connect` runs under a JetBrains IDE it detects the surface and appends a `/jetbrains` suffix to the agent, writing `DATAVERSE_PLUGIN_AGENT=<agent>/jetbrains` (e.g. `codex/jetbrains`) to `.env`; `scripts/auth.py` then stamps `agent=<agent>/jetbrains` into the operation-context so Dataverse telemetry attributes the traffic to JetBrains. If the suffix is missing after connect, append `/jetbrains` to the `DATAVERSE_PLUGIN_AGENT` value yourself. Use the **verified** plugin version in any attribution context (read it from the plugin manifest) -- never guess it.
 
 ## Helper scripts
 
